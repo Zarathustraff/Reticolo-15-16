@@ -61,6 +61,8 @@ int main()
 
 	const double thetapiccolo = convertiSecondiInGradi(90.00); //in gradi
 
+	std::cout << "thetagrande: " << thetagrande << ", thetapiccolo: " << thetapiccolo << endl;
+
 	/* YExcel::BasicExcelWorksheet* bluDx = Excel.GetWorksheet(0); 
 
 	YExcel::BasicExcelWorksheet* azzurroDx = Excel.GetWorksheet(1);
@@ -91,6 +93,8 @@ int main()
 
 			YExcel::BasicExcelCell* cellB = sheet->Cell(row, col + 2);
 
+			YExcel::BasicExcelCell* errorCell = sheet->Cell(row, col + 1);
+
 			std::cout << "row: " << row << ", col: " << col << ", number: " << number << endl;
 			
 			std::cout << "CellA: " << cellA->GetDouble() << endl << "CellB: " << cellB->GetDouble() << endl;
@@ -103,9 +107,39 @@ int main()
 			double set;
 			set = (modulo(thetap - thetagrande) + modulo(thetam - thetapiccolo))*0.5;
 			cellA->SetDouble(set);
+			errorCell->SetInteger(row+1);
 			cellB->EraseContents();
 			std::cout <<"set: "<< set << endl;
 		};
+
+	};
+
+	for (number = 8; number < 9; number++) { //l'ultima scheda è per la prima parte, ovvero il calcolo dell'errore statistico.
+
+		for (row = 0; row < 10; row++) {
+
+			YExcel::BasicExcelWorksheet* sheet = Excel.GetWorksheet(number);
+
+			YExcel::BasicExcelCell* cellA = sheet->Cell(row, col);
+
+			/*YExcel::BasicExcelCell* cellB = sheet->Cell(row, col + 2);*/
+
+			std::cout << "row: " << row << ", col: " << col << ", number: " << number << endl;
+
+			std::cout << "CellA: " << cellA->GetDouble() << endl/* << "CellB: " << cellB->GetDouble() << endl*/;
+
+			thetap = convertiSecondiInGradi(cellA->GetDouble());
+			//thetam = convertiSecondiInGradi(cellB->GetDouble());
+
+			std::cout << "thetap: " << thetap << endl /*<< "thetam: " << thetam << endl*/;
+
+			double set;
+			set = modulo(thetap - thetagrande);
+			cellA->SetDouble(set);
+			//cellB->EraseContents();
+			std::cout << "set: " << set << endl;
+
+		}; //qua finisce il calcolo/conversione dei dati per l'errore statistico.
 
 	};
 	/* YExcel::BasicExcelCell* cell1 = sheet->Cell(0, 0);
