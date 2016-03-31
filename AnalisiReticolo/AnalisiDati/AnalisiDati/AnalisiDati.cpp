@@ -19,6 +19,32 @@
 
 #endif // _WIN32
 
+double convertiSecondiInGradi(double secondi);
+
+double modulo(double val);
+
+double convertiSecondiInGradi(double secondi) {
+
+	int Gradi = secondi;
+
+	double Gr = Gradi;
+
+	double finale = ((secondi - Gr) / 0.6) + Gr;
+
+	return finale;
+
+};
+
+double modulo(double val) {
+	if (val < 0.0) {
+		return -val;
+	}
+	else {
+		return val;
+	};
+}
+
+
 
 
 int main()
@@ -31,21 +57,80 @@ int main()
 
 	Excel.SaveAs("Excel.xls");*/
 
-	YExcel::BasicExcelWorksheet* sheet = Excel.GetWorksheet(0);
+	const double thetagrande = convertiSecondiInGradi(269.50); //in gradi
 
-	YExcel::BasicExcelCell* cell = sheet->Cell(0, 0);
+	const double thetapiccolo = convertiSecondiInGradi(90.00); //in gradi
+
+	/* YExcel::BasicExcelWorksheet* bluDx = Excel.GetWorksheet(0); 
+
+	YExcel::BasicExcelWorksheet* azzurroDx = Excel.GetWorksheet(1);
+
+	YExcel::BasicExcelWorksheet* verdeDx = Excel.GetWorksheet(2);
+
+	YExcel::BasicExcelWorksheet* rossoDx = Excel.GetWorksheet(3);
+
+	YExcel::BasicExcelWorksheet* bluSx = Excel.GetWorksheet(4);
+
+	YExcel::BasicExcelWorksheet* azzurroSx = Excel.GetWorksheet(5);
+
+	YExcel::BasicExcelWorksheet* verdeSx = Excel.GetWorksheet(6);
+
+	YExcel::BasicExcelWorksheet* rossoSx = Excel.GetWorksheet(7); */
+
+	int col=0, row=0, number=0;
+
+	double thetap, thetam;
+
+	for (number = 0; number < 8; number++) {
+
+		for (row = 0; !(row>4||(row>3&&(number==3||number==7))); row++) {
+
+			YExcel::BasicExcelWorksheet* sheet = Excel.GetWorksheet(number);
+
+			YExcel::BasicExcelCell* cellA = sheet->Cell(row, col);
+
+			YExcel::BasicExcelCell* cellB = sheet->Cell(row, col + 2);
+
+			std::cout << "row: " << row << ", col: " << col << ", number: " << number << endl;
+			
+			std::cout << "CellA: " << cellA->GetDouble() << endl << "CellB: " << cellB->GetDouble() << endl;
+
+			thetap = convertiSecondiInGradi(cellA->GetDouble());
+			thetam = convertiSecondiInGradi(cellB->GetDouble());
+
+			std::cout << "thetap: " << thetap << endl << "thetam: " << thetam << endl;
+
+			double set;
+			set = (modulo(thetap - thetagrande) + modulo(thetam - thetapiccolo))*0.5;
+			cellA->SetDouble(set);
+			cellB->EraseContents();
+			std::cout <<"set: "<< set << endl;
+		};
+
+	};
+	/* YExcel::BasicExcelCell* cell1 = sheet->Cell(0, 0);
+
+	YExcel::BasicExcelCell* cell2 = sheet->Cell(0, 1);
 
 	double val;
 
-	cell->Get(val);
+	val = cell1->GetDouble();
+
+	double finale = convertiSecondiInGradi(val);
+
+	cell2->SetDouble(finale);
 
 	std::cout << val << endl;
 
-	int a;
+	std::cout << "il valore" << val << " convertito è: " << finale << endl; */
 
-	std::cout << "Inserire intero." << endl;
+	int a; 
+
+	std::cout << "Inserire intero. Programma Terminato." << endl;
 
 	std::cin >> a;
+
+	Excel.SaveAs("Exceloutput.xls");
 
     return 0;
 }
