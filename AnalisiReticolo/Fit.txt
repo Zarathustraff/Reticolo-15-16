@@ -1,0 +1,2 @@
+lambda;errorelambda;colorebanda;lato
+4.758e-7;6.721e-10;blu;dx
