@@ -1,0 +1,3 @@
+﻿  AnalisiDati.cpp
+c:\users\stefano\documents\github\reticolo-15-16\analisireticolo\analisidati\analisidati\analisidati.cpp(37): warning C4244: 'inizializzazione': conversione da 'double' a 'int'. Possibile perdita di dati.
+  AnalisiDati.vcxproj -> C:\Users\Stefano\Documents\GitHub\Reticolo-15-16\AnalisiReticolo\AnalisiDati\Debug\AnalisiDati.exe

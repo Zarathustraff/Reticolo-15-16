@@ -1,0 +1,10 @@
+lambda;errorelambda;colorebanda;lato
+4.758e-7;6.721e-10;blu;dx
+4.768e-7;1.045e-9;blu;sx
+4.876e-7;1.226e-9;azzurro;dx
+4.909e-7;1.124e-9;azzurro;sx
+5.152e-7;8.421e-10;verde;dx
+5.170e-7;1.24e-9;verde;sx
+6.553e-7;1.011e-9;rosso;dx
+6.554e-7;1.553e-9;rosso;sx
+
